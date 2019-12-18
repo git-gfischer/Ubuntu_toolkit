@@ -18,7 +18,7 @@ sudo apt-get upgrade &&
 sudo apt install build-essential &&
 
 sudo apt install zram-config && 
-sudo apt install htop curl nano vim wget code tmux &&
+sudo apt install htop curl nano vim wget tmux &&
 
 sudo apt update &&
 sudo apt install software-properties-common apt-transport-https &&
