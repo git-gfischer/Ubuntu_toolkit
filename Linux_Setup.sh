@@ -17,45 +17,45 @@ sudo apt-get update &&
 sudo apt-get upgrade &&
 sudo apt install build-essential &&
 
-sudo apt install zram-config && 
-sudo apt install htop curl nano vim wget tmux &&
+sudo apt install -y zram-config && 
+sudo apt install -y htop curl nano vim wget tmux &&
 
 sudo apt update &&
-sudo apt install software-properties-common apt-transport-https &&
+sudo apt install -y  software-properties-common apt-transport-https &&
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - &&
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" &&
 
 sudo apt update &&
-sudo apt install code &&
+sudo apt install -y  code &&
 
-sudo apt install prelink preload &&
-sudo apt install openssh-server &&
+sudo apt install -y prelink preload &&
+sudo apt install -y openssh-server &&
 sudo ufw allow ssh &&
 
-sudo apt install gnome-tweaks &&
+sudo apt install -y gnome-tweaks &&
 
 
 #install python 3
-sudo apt-get install python3-dev && 
-sudo apt-get install ipython ipython3 &&
-sudo apt install python3 python3-pip &&
-sudo apt install python3-usb &&
+sudo apt-get install -y python3-dev && 
+sudo apt-get install -y ipython ipython3 &&
+sudo apt install -y python3 python3-pip &&
+sudo apt install -y python3-usb &&
 # installing pip 
 wget https://bootstrap.pypa.io/get-pip.py &&
 sudo python3 get-pip.py &&
 sudo rm -rf ~/get-pip.py ~/.cache/pip && 
 #install numpy
-sudo apt install python3-numpy &&
-sudo apt install python-numpy &&
+sudo apt install -y python3-numpy &&
+sudo apt install -y python-numpy &&
 #install scipy
-sudo apt install python3-scipy &&
-sudo apt install python-scipy &&
+sudo apt install -y python3-scipy &&
+sudo apt install -y python-scipy &&
 #install mock
-sudo apt install python3-mock &&
-sudo apt install python-mock &&
+sudo apt install -y python3-mock &&
+sudo apt install -y python-mock &&
 #install six
-sudo apt install python3-six &&
-sudo apt install python-six &&
+sudo apt install -y python3-six &&
+sudo apt install -y python-six &&
 
 echo "Linux tools completed" 
 
