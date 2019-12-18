@@ -23,14 +23,22 @@ sudo apt-get update &&
 sudo apt-get -y upgrade &&
 
 sudo apt install -y python3-pip &&
-sudo apt-get install build-essential libssl-dev libffi-dev python-dev &&
+sudo apt-get install -y build-essential libssl-dev libffi-dev python-dev &&
 sudo apt install -y python3-venv &&
-sudo pip3 install virtualenv &&
+sudo pip3 install  virtualenv &&
 sudo pip3 install virtualenvwrapper &&
 
 echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc && 
 echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc && 
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc && 
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc &&
+echo "source VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc && 
 source ~/.bashrc &&
+
+
+
+
+
+
+
 
 echo -e "${GREEN} SETUP: Virtualenv installed sucessfully"
