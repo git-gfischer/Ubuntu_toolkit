@@ -24,6 +24,8 @@ LIGHT_CYAN='\033[1;36m'
 WHITE='\033[1;37m'
 NC='\033[0m' #no color
 
+NAME=${1}
+
 echo -e "${CYAN} SETUP:Start Opencv Setup...${NC}"
 
 echo -e "${CYAN} SETUP:Sudo apt-get update${NC}" &&
@@ -49,13 +51,6 @@ sudo apt-get install libgtk-3-dev &&
 echo -e "${CYAN} SETUP:Sudo apt-get install libatlas-base-dev gfortran ${NC}" &&
 sudo apt-get install libatlas-base-dev gfortran &&
 
-#creating virtual env
-#mkvirtualenv cv -p python3 &&
-#changing to recently created virtual env
-#workon cv && 
-#installing numpy
-#pip install numpy &&
-
 #Compile 
 echo -e "${CYAN} Setup: Compile ${NC} " &&
 cd ~/opencv &&
@@ -77,10 +72,10 @@ sudo ldconfig &&
 
 #link opencv into python3 virtual env
 echo -e "${CYAN} link opencv into python3 virtual env ${NC}"
-workon $1 &&
+source ~/.virtualenvs/$NAME/bin/activate &&
 cd /usr/local/python/cv2/python-3.5 &&
 sudo mv cv2.cpython-35m-x86_64-linux-gnu.so cv2.so &&
-cd ~/.virtualenvs/cv/lib/python3.5/site-packages/ &&
+cd ~/.virtualenvs/$NAME/lib/python3.5/site-packages/ &&
 ln -s /usr/local/python/cv2/python-3.5/cv2.so cv2.so &&
 
 echo -e "${GREEN} SETUP:Opencv installed sucessfully ${NC} "

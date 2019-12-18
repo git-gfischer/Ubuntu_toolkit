@@ -28,9 +28,7 @@ sudo apt-get install -y python3-venv &&
 
 NAME=${1} 
 echo -e "${CYAN} SETUP:source /usr/local/bin/virtualenvwrapper.sh${NC} " &&
-#source /usr/local/bin/virtualenvwrapper.sh &&
-#echo -e "${CYAN} SETUP:workon $NAME ${NC} " &&
-#workon $NAME &&
+
 #installing pytorch
 echo -e "${CYAN} SETUP:pip3 install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html ${NC}" &&
 source ~/.virtualenvs/$NAME/bin/activate &&
