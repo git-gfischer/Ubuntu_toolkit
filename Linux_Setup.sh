@@ -19,6 +19,15 @@ sudo apt install build-essential &&
 
 sudo apt install zram-config && 
 sudo apt install htop curl nano vim wget code tmux &&
+
+sudo apt update &&
+sudo apt install software-properties-common apt-transport-https &&
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - &&
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" &&
+
+sudo apt update &&
+sudo apt install code &&
+
 sudo apt install prelink preload &&
 sudo apt install openssh-server &&
 sudo ufw allow ssh &&
