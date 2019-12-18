@@ -31,25 +31,41 @@ echo -e "${CYAN} SETUP:Start Opencv Setup...${NC}"
 echo -e "${CYAN} SETUP:Sudo apt-get update${NC}" &&
 sudo apt-get update &&
 echo -e "${CYAN} SETUP:Sudo apt-get upgrade ${NC}" &&
-sudo apt-get upgrade &&
+sudo apt-get -y upgrade &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install build-essential cmake unzip pkg-config ${NC}" &&
-sudo apt-get install build-essential cmake unzip pkg-config &&
+sudo apt-get install -y build-essential cmake unzip pkg-config &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install libjpeg-dev libpng-dev libtiff-dev ${NC}" &&
-sudo apt-get install libjpeg-dev libpng-dev libtiff-dev &&
+sudo apt-get install -y libjpeg-dev libpng-dev libtiff-dev &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev ${NC} " &&
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev &&
+sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install libxvidcore-dev libx264-dev ${NC}" &&
-sudo apt-get install libxvidcore-dev libx264-dev &&
+sudo apt-get install -y libxvidcore-dev libx264-dev &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install libgtk-3-dev ${NC}" &&
-sudo apt-get install libgtk-3-dev &&
+sudo apt-get install -y libgtk-3-dev &&
 
 echo -e "${CYAN} SETUP:Sudo apt-get install libatlas-base-dev gfortran ${NC}" &&
-sudo apt-get install libatlas-base-dev gfortran &&
+sudo apt-get install -y libatlas-base-dev gfortran &&
+
+echo -e "${CYAN}sudo apt install python3-dev ${NC}" &&
+sudo apt install python3-dev &&
+
+cd ~ &&
+$ wget -O opencv.zip https://github.com/opencv/opencv/archive/4.0.0.zip &&
+$ wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.0.0.zip &&
+
+unzip opencv.zip &&
+unzip opencv_contrib.zip &&
+
+mv opencv-4.0.0 opencv &&
+mv opencv_contrib-4.0.0 opencv_contrib &&
+ 
+wget https://bootstrap.pypa.io/get-pip.py &&
+sudo python3 get-pip.py &&
 
 #Compile 
 echo -e "${CYAN} Setup: Compile ${NC} " &&
