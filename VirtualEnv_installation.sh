@@ -31,7 +31,7 @@ sudo pip3 install virtualenvwrapper &&
 echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc && 
 echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc && 
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc &&
-echo "source VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc && 
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc && 
 source ~/.bashrc &&
 
 
