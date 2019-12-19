@@ -33,6 +33,7 @@ sudo apt install -y openssh-server &&
 sudo ufw allow ssh &&
 
 sudo apt install -y gnome-tweaks &&
+sudo apt install -y net-tools &&
 
 
 #install python 3
