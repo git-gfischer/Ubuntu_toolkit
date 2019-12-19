@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Creating ROS workspace and basic file structure
+#source: http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
+
+cd ..
+mkdir -p $1/catkin_ws/src
+cd $1/catkin_ws/
+catkin_make
+
+echo "ROS WS created sucessfully"
+echo "Dont forget to type:source devel/setup.bash"

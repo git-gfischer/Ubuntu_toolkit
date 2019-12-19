@@ -34,11 +34,5 @@ echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc &&
 echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc && 
 source ~/.bashrc &&
 
-
-
-
-
-
-
-
-echo -e "${GREEN} SETUP: Virtualenv installed sucessfully"
+echo -e "${GREEN} SETUP: Virtualenv installed sucessfully" &&
+echo -e "${YELLOW}SETUP:Close this Terminal"

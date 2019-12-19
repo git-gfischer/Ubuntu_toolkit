@@ -95,7 +95,6 @@ cd ~/.virtualenvs/$NAME/lib/python3.5/site-packages/ &&
 ln -s /usr/local/python/cv2/python-3.5/cv2.so cv2.so &&
 
 echo -e "${GREEN} SETUP:Opencv installed sucessfully ${NC} "
-	 
 	
 	
 	
