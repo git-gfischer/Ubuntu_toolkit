@@ -1,0 +1,29 @@
+Install Cuda first on your computer to avoid later incompatibilaty with other packages.
+
+Go To: 
+https://developer.nvidia.com/cuda-10.1-download-archive-base?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
+
+Download: cuda-repo-ubuntu1804-10-1-local-10.1.105-418.39_1.0-1_amd64.deb
+
+Follow the instructions given in the Nvidia website
+
+After that reboot your PC
+
+Once it turns on again, a blue screen will show up. you should choose:
+install MOK
+continue
+yes
+(It will configure Nvidia drivers)
+
+After that go to bashrc file (vim ~/.bashrc) and add the following lines at the end:
+export LD_LIBRARY_PATH=/usr/local/cuda/lib
+export PATH=$PATH:/usr/local/cuda/bin
+
+after that exit the terminal and open another one.
+check if everything went well with
+nvidia-smi
+nvcc -V
+
+
+You Welcome
+Have a nice day :)
