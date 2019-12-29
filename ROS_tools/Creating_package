@@ -8,9 +8,9 @@ NC='\033[0m' # no color
 printf "${Yellow}Create_package <WS> <NAME> \n"
 printf "The package is created with the dependecies of std_msgs rospy roscpp ${NC} \n"
 
-cd /home/fischer/Desktop/Fischer_linux/ROS/$1/catkin_ws/src &&
+cd $1/catkin_ws/src &&
 catkin_create_pkg $2 std_msgs rospy roscpp &&
-cd /home/fischer/Desktop/Fischer_linux/ROS/$1/catkin_ws &&
+cd $1/catkin_ws &&
 catkin_make &&
 
 printf "${Green}ROS package created sucesfully"

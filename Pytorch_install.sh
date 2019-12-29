@@ -32,10 +32,7 @@ echo -e "${CYAN} SETUP:source /usr/local/bin/virtualenvwrapper.sh${NC} " &&
 #installing pytorch
 echo -e "${CYAN} SETUP:pip3 install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html ${NC}" &&
 source ~/.virtualenvs/$NAME/bin/activate &&
-pip3 install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html &&
-echo -e "${CYAN} SETUP:pip3 install torchvision ${NC}" &&
-pip3 install torchvision &&
-
+pip3 install torch torchvision
 echo -e "${GREEN} Pytorch install sucessfully ${NC}"
 
 
