@@ -1,0 +1,13 @@
+#list all virtualenvs
+workon
+
+#create a new virtualenv
+mkvirtualenv [Name]
+
+#remove a virtaulenv
+rmvirtualenv [Name]
+
+#deactivate virualenv
+deactivate
+
+

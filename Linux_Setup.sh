@@ -35,6 +35,17 @@ sudo ufw allow ssh &&
 sudo apt install -y gnome-tweaks &&
 sudo apt install -y net-tools &&
 
+#install figlet
+sudo apt-get install -y figlet &&
+
+
+#gnome tweak
+sudo apt -y install gnome-shell-extensions &&
+sudo apt -y install gnome-tweak-tool && 
+sudo apt -y chrome-gnome-shell &&
+#go to  https://extensions.gnome.org/extension/1485/workspace-matrix/
+#       https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/
+
 
 #install python 3
 sudo apt-get install -y python3-dev && 
@@ -57,6 +68,9 @@ sudo apt install -y python-mock &&
 #install six
 sudo apt install -y python3-six &&
 sudo apt install -y python-six &&
+
+
+
 
 echo "Linux tools completed" 
 
