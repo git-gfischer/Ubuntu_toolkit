@@ -27,3 +27,9 @@ nvcc -V
 
 You Welcome
 Have a nice day :)
+
+
+cuDNN: https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html
+tensorrt: https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html#installing-tar
+
+

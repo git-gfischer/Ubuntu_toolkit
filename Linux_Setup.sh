@@ -38,6 +38,8 @@ sudo apt install -y net-tools &&
 #install figlet
 sudo apt-get install -y figlet &&
 
+#install cmake
+sudo apt-get -y install cmake &&
 
 #gnome tweak
 sudo apt -y install gnome-shell-extensions &&
