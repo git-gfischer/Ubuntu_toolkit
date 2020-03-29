@@ -33,6 +33,9 @@ curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE
 
 sudo apt-get update &&
 
+sudo apt-get install  python-pip &&
+sudo pip install -U rosdep rospkg &&
+
 sudo apt install -y ros-melodic-desktop-full &&
 sudo rosdep init &&
 rosdep update &&
@@ -41,7 +44,7 @@ source ~/.bashrc &&
 source /opt/ros/melodic/setup.bash &&
 sudo apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential &&
 
-echo -e "${GREEN} :::ROS Melodic has been sucessfully installed"
+echo -e "${GREEN} :::ROS Melodic has been successfully installed"
 
 
 
