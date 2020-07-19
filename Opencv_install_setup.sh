@@ -1,7 +1,12 @@
 #!/bin/bash 
-
+#Usage: ./Opencv_install_setup.sh <VIRTUAL ENV>
 #This bash file installs opencv lib and all its dependencies
-
+#Source: https://qengineering.eu/install-caffe-on-ubuntu-18.04-with-opencv-4.1.html
+#Source: https://cuda-chen.github.io/image%20processing/programming/2020/02/22/build-opencv-dnn-module-with-nvidia-gpu-support-on-ubuntu-1804.html
+#Source: https://www.pyimagesearch.com/2016/07/11/compiling-opencv-with-cuda-support/
+#Source: https://www.pyimagesearch.com/2020/02/03/how-to-use-opencvs-dnn-module-with-nvidia-gpus-cuda-and-cudnn/
+#Source: https://cv-tricks.com/installation/opencv-4-1-ubuntu18-04/
+#Source: https://stackoverflow.com/questions/55234833/how-to-compile-static-opencv4-libraries
 
 #echo color table
 BLACK='\033[0;30m'
@@ -57,79 +62,77 @@ sudo apt -y install libgstreamer-plugins-base1.0-dev &&
 sudo apt -y install libgtkglext1 &&
 sudo apt -y install libgtkglext1-dev &&
 
+sudo apt-get -y install build-essential cmake unzip pkg-config
+sudo apt-get -y install libjpeg-dev libpng-dev libtiff-dev
+sudo apt-get -y install libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get -y install libv4l-dev libxvidcore-dev libx264-dev
+sudo apt-get -y install libgtk-3-dev
+sudo apt-get -y install libatlas-base-dev gfortran
+sudo apt-get -y install libprotobuf-dev libgoogle-glog-dev libgflags-dev
+sudo apt-get -y install libprotobuf-dev libleveldb-dev liblmdb-dev
+
+
 cd ~ &&
-wget -O opencv.zip https://github.com/opencv/opencv/archive/4.0.0.zip &&
-wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.0.0.zip &&
+wget -O opencv.zip https://github.com/opencv/opencv/archive/4.2.0.zip &&
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.2.0.zip &&
 unzip opencv.zip &&
 unzip opencv_contrib.zip &&
 
-mv opencv-4.0.0 opencv &&
-mv opencv_contrib-4.0.0 opencv_contrib &&
+mv opencv-4.2.0 opencv &&
+mv opencv_contrib-4.2.0 opencv_contrib &&
 
 #Compile 
 echo -e "${CYAN} Setup: Compile ${NC} " &&
 source ~/.virtualenvs/$NAME/bin/activate &&
+pip3 install numpy &&
 cd ~/opencv &&
 mkdir build &&
 cd build &&
 
 cmake -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=/usr/local \
--DBUILD_PNG=ON \
--DBUILD_TIFF=ON \
--DBUILD_TBB=ON \
--DBUILD_JPEG=ON \
--DBUILD_JASPER=OFF \
--DBUILD_ZLIB=OFF \
--DBUILD_EXAMPLES=OFF \
--DBUILD_opencv_java=OFF \
--DBUILD_opencv_python2=ON \
--DBUILD_opencv_python3=ON \
--DBUILD_PERF_TESTS=OFF \
--DBUILD_TESTS=OFF \
--DWITH_FFMPEG=ON \
--DWITH_V4L=OFF \
--DWITH_GSTREAMER=ON \
--DWITH_GSTREAMER_0_10=OFF \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D INSTALL_C_EXAMPLES=OFF \
+-D OPENCV_ENABLE_NONFREE=ON \
 -DWITH_CUDA=ON \
 -D WITH_CUDNN=ON \
 -D OPENCV_DNN_CUDA=ON \
+-DWITH_GSTREAMER=ON \
+-DWITH_GSTREAMER_0_10=OFF \
+-DWITH_OPENGL=ON \
+-DBUILD_TBB=ON \
 -D ENABLE_FAST_MATH=1 \
 -D CUDA_FAST_MATH=1 \
--D CUDA_ARCH_BIN=7.0 \
--D WITH_CUBLAS=1 \
--DWITH_CSTRIPES=ON \
--DWITH_GTK=ON \
--DWITH_VTK=OFF \
--DWITH_TBB=ON \
--DWITH_1394=OFF \
--DWITH_OPENEXR=OFF \
--DWITH_OPENGL=OFF -DENABLE_PRECOMPILED_HEADERS=OFF \
+-D CUDA_ARCH_BIN="6.1 7.0 7.5" \
 -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-10.1 \
--D CUDA_ARCH_BIN="6.0 6.1 7.0 7.5" \
--DCUDA_ARCH_PTX= \
--DINSTALL_C_EXAMPLES=OFF \
--D ENABLE_FAST_MATH=ON \
--D CUDA_FAST_MATH=ON \
--D WITH_CUBLAS=ON \
--DBUILD_PROTOBUF=ON \
--D WITH_PROTOBUF=OFF \
--DBUILD_opencv_cudacodec=OFF \
+-DENABLE_PRECOMPILED_HEADERS=OFF \
+-D WITH_CUBLAS=1 \
 -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+-D HAVE_opencv_python3=ON \
+-D PYTHON_EXECUTABLE=~/.virtualenvs/opencv_cuda/bin/python \
+-DBUILD_EXAMPLES=ON \
+-DBUILD_opencv_cudacodec=OFF \
+-D OPENCV_GENERATE_PKGCONFIG=YES \
 .. &&
+
+#-D CUDA_NVCC_FLAGS=”-D_FORCE_INLINES –expt-relaxed-constexpr” \
+
 	
-make -j4 &&
+make -j4  &&
+cd .. &&
+python ./modules/python/src2/gen2.py ./build/modules/python_bindings_generator ./build/modules/python_bindings_generator/headers.txt &&
+cd build &&
 sudo make install &&
 sudo ldconfig &&
 
+
 #link opencv into python3 virtual env
 echo -e "${CYAN} link opencv into python3 virtual env ${NC}"
-cd /usr/local/python/cv2/python-3.6 &&
-sudo mv cv2.cpython-35m-x86_64-linux-gnu.so cv2.so &&
 cd ~/.virtualenvs/$NAME/lib/python3.6/site-packages/ &&
-ln -s /usr/local/python/cv2/python-3.6/cv2.so cv2.so &&
+ln -s /usr/local/lib/python3.6/site-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so &&
 
 echo -e "${GREEN} SETUP:Opencv installed sucessfully ${NC} "
+echo -e "${YELLOW} SETUP:opencv4.pc must be ajusted in order to compile C++ codes ${NC} "
 	
 	
 	
