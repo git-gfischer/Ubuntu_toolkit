@@ -5,7 +5,7 @@
 #Source: https://cuda-chen.github.io/image%20processing/programming/2020/02/22/build-opencv-dnn-module-with-nvidia-gpu-support-on-ubuntu-1804.html
 #Source: https://www.pyimagesearch.com/2016/07/11/compiling-opencv-with-cuda-support/
 #Source: https://www.pyimagesearch.com/2020/02/03/how-to-use-opencvs-dnn-module-with-nvidia-gpus-cuda-and-cudnn/
-#Source: https://cv-tricks.com/installation/opencv-4-1-ubuntu18-04/
+#Source: https://cv-tricks.com/installation/opencv-4-1-ubuntu18-04/ (check here for after instalation)
 #Source: https://stackoverflow.com/questions/55234833/how-to-compile-static-opencv4-libraries
 
 #echo color table
@@ -73,18 +73,18 @@ sudo apt-get -y install libprotobuf-dev libleveldb-dev liblmdb-dev
 
 
 cd ~ &&
-wget -O opencv.zip https://github.com/opencv/opencv/archive/4.2.0.zip &&
-wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.2.0.zip &&
+wget -O opencv.zip https://github.com/opencv/opencv/archive/4.5.1.zip &&
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.5.1.zip &&
 unzip opencv.zip &&
 unzip opencv_contrib.zip &&
 
-mv opencv-4.2.0 opencv &&
-mv opencv_contrib-4.2.0 opencv_contrib &&
+mv opencv-4.5.1 opencv &&
+mv opencv_contrib-4.5.1 opencv_contrib &&
 
 #Compile 
-echo -e "${CYAN} Setup: Compile ${NC} " &&
-source ~/.virtualenvs/$NAME/bin/activate &&
-pip3 install numpy &&
+#echo -e "${CYAN} Setup: Compile ${NC} " &&
+#source ~/.virtualenvs/$NAME/bin/activate &&
+#pip3 install numpy &&
 cd ~/opencv &&
 mkdir build &&
 cd build &&
@@ -92,7 +92,7 @@ cd build &&
 cmake -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=/usr/local \
 -D INSTALL_PYTHON_EXAMPLES=ON \
--D INSTALL_C_EXAMPLES=OFF \
+-D INSTALL_C_EXAMPLES=ON \
 -D OPENCV_ENABLE_NONFREE=ON \
 -DWITH_CUDA=ON \
 -D WITH_CUDNN=ON \
@@ -117,19 +117,24 @@ cmake -DCMAKE_BUILD_TYPE=Release \
 
 #-D CUDA_NVCC_FLAGS=”-D_FORCE_INLINES –expt-relaxed-constexpr” \
 
-	
+
+#c++ only
 make -j4  &&
-cd .. &&
-python ./modules/python/src2/gen2.py ./build/modules/python_bindings_generator ./build/modules/python_bindings_generator/headers.txt &&
-cd build &&
 sudo make install &&
-sudo ldconfig &&
+
+#python 
+#make -j4  &&
+#cd .. &&
+#python ./modules/python/src2/gen2.py ./build/modules/python_bindings_generator ./build/modules/python_bindings_generator/headers.txt &&
+#cd build &&
+#sudo make install &&
+#sudo ldconfig &&
 
 
 #link opencv into python3 virtual env
-echo -e "${CYAN} link opencv into python3 virtual env ${NC}"
-cd ~/.virtualenvs/$NAME/lib/python3.6/site-packages/ &&
-ln -s /usr/local/lib/python3.6/site-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so &&
+#echo -e "${CYAN} link opencv into python3 virtual env ${NC}"
+#cd ~/.virtualenvs/$NAME/lib/python3.6/site-packages/ &&
+#ln -s /usr/local/lib/python3.6/site-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so &&
 
 echo -e "${GREEN} SETUP:Opencv installed sucessfully ${NC} "
 echo -e "${YELLOW} SETUP:opencv4.pc must be ajusted in order to compile C++ codes ${NC} "
